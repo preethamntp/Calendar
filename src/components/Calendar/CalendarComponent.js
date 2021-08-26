@@ -4,15 +4,13 @@ import CalendarHeader from "./calendar-header";
 import WeekdayIndicator from "./WeekdayIndicator";
 import DateIndicator from "./DateIndicator";
 import { MainContainer, Container } from "./calenderElements";
+import { getYear } from "./utils/moment-utils";
 
 const CalendarComponent = () => {
   const [selectDate, setSelectDate] = useState(moment().toDate());
   const [incCount, setIncCount] = useState(0);
-  const [decCount, setDecCount] = useState(0);
 
-  useEffect(() => {
-    // console.log(count);
-  }, [selectDate, incCount, decCount]);
+  useEffect(() => {}, [selectDate, incCount]);
 
   const incrementCount = () => {
     setIncCount(incCount + 1);
@@ -20,9 +18,8 @@ const CalendarComponent = () => {
   };
 
   const decrementCount = () => {
-    setDecCount(decCount + 1);
-
-    setSelectDate(moment().subtract(decCount, "years"));
+    setIncCount(incCount - 1);
+    setSelectDate(moment().add(incCount ? incCount : -incCount, "years"));
   };
 
   return (
