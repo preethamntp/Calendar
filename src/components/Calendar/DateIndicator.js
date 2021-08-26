@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   getDayOfMonth,
   getMonthDayYear,
@@ -9,12 +9,6 @@ import { getDatesInMonthDisplay } from "./utils/date-utils";
 import { IndicatorElement, DayIndicatorElement } from "./calenderElements";
 
 const DateIndicator = ({ activeDates, selectDate, setSelectDate }) => {
-  const [dropDown, setDropDown] = useState(false);
-
-  useEffect(() => {
-    console.log(dropDown);
-  }, [dropDown]);
-
   const datesInMonth = getDatesInMonthDisplay(
     getMonth(selectDate) + 1,
     getYear(selectDate)
@@ -26,10 +20,9 @@ const DateIndicator = ({ activeDates, selectDate, setSelectDate }) => {
     const active =
       activeDates && activeDates[getMonthDayYear(i.date)] ? "active" : "";
 
-    const handleClick = () => {
-      setDropDown(!dropDown);
+    const changeDate = e => {
+      setSelectDate(e.target.getAttribute("data-date"));
     };
-
     return (
       <>
         <IndicatorElement
@@ -38,7 +31,7 @@ const DateIndicator = ({ activeDates, selectDate, setSelectDate }) => {
           dataActiveMonth={i.currentMonth}
           data-date={i.date.toString()}
           key={key}
-          onClick={handleClick}
+          onClick={changeDate}
         >
           {getDayOfMonth(i.date)}
         </IndicatorElement>

@@ -13,6 +13,20 @@ width:620px;
 padding:1%;
 `
 
+export const YearContainer = styled.div `
+background-color:#fe7663;
+display:flex;
+justify-content:space-between;
+align-items:center;
+/* height:80px;
+width:620px; */
+padding:1%;
+
+  > .arrowIcon{
+    cursor:pointer;
+  }
+`
+
 export const MainContainer = styled.div `
   background: #ffff;
   display: flex;

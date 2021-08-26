@@ -1,16 +1,27 @@
-import React from 'react';
-import moment from 'moment';
-import {CalendarHeaderElement} from './calenderElements';
+import React from "react";
 
-const CalendarHeader = ({ selectDate }) => {
+import {
+  getReadableMonthDate,
+  getReadableWeekday,
+  getYear
+} from "./utils/moment-utils";
+
+import { CalendarHeaderElement, YearContainer } from "./calenderElements";
+import ArrowLeftIcon from "@material-ui/icons/ArrowLeft";
+import ArrowRightIcon from "@material-ui/icons/ArrowRight";
+
+const CalendarHeader = ({ selectDate, incrementYear, decrementYear }) => {
   return (
     <CalendarHeaderElement>
       <div className="left-container">
-        <h1>{moment(selectDate).format('dddd')}</h1>
-        <h1>{moment(selectDate).format('MMMM Do')}</h1>
+        <h1>{getReadableWeekday(selectDate)}</h1>
+        <h1>{getReadableMonthDate(selectDate)}</h1>
       </div>
       <div className="right-container">
-        <h3>{moment(selectDate).year()}</h3>
+        <YearContainer>
+          <ArrowLeftIcon className="arrowIcon" onClick={decrementYear} /> <h3>{getYear(selectDate)}</h3>{" "}
+          <ArrowRightIcon className="arrowIcon" onClick={incrementYear} />
+        </YearContainer>
       </div>
     </CalendarHeaderElement>
   );

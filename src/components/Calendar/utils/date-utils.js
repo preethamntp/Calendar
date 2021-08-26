@@ -5,7 +5,9 @@ const {
   getYear,
   getMonthDayYear,
 } = require('./moment-utils');
-const { totalDatesPerMonthView } = require('../constants/dates');
+const {
+  totalDatesPerMonthView
+} = require('../constants/dates');
 
 const getPrevMonthYear = (month, year) => {
   if (month === 1) {
@@ -82,7 +84,7 @@ const getDatesInMonthDisplay = (month, year) => {
   return result;
 };
 
-const getMonthSet = (selectDate) => {
+const getMonthSet = (selectDate, nextYear=false, newYear = 1) => {
   const month = getMonth(selectDate) + 1;
   const result = {
     current: selectDate,
@@ -96,6 +98,13 @@ const getMonthSet = (selectDate) => {
 
   if (month === 12) {
     result.next = getSpecificDate(1, 1, getYear(selectDate) + 1);
+  }
+
+  if (nextYear) {
+    // console.log(getSpecificDate(1, 1, getYear(selectDate) + newYear));
+    result.next = getSpecificDate(1, 1, getYear(selectDate) + 1);
+// 
+    // result.next = getSpecificDate(1, 1, getYear(selectDate) + newYear);
   }
 
   return result;
@@ -119,4 +128,8 @@ const presetDateTracker = (dates) => {
   return result;
 };
 
-export { getDatesInMonthDisplay, getMonthSet, presetDateTracker };
+export {
+  getDatesInMonthDisplay,
+  getMonthSet,
+  presetDateTracker
+};
