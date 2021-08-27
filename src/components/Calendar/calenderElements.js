@@ -59,6 +59,11 @@ display: grid;
   background-color: #ffffff;
   padding: 10px;
 `
+export const Section = styled.div `
+display: flex;
+  justify-content: center;
+  align-items: center;
+`
 
 export const IndicatorElement = styled.div `
  position: relative;

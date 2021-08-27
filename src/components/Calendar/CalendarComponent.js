@@ -4,7 +4,6 @@ import CalendarHeader from "./calendar-header";
 import WeekdayIndicator from "./WeekdayIndicator";
 import DateIndicator from "./DateIndicator";
 import { MainContainer, Container } from "./calenderElements";
-import { getYear } from "./utils/moment-utils";
 
 const CalendarComponent = () => {
   const [selectDate, setSelectDate] = useState(moment().toDate());
